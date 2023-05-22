@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'mobictl = mobicontroller_demo_ros.mobictl:main'
+            'mobictl_sensors = mobicontroller_demo_ros.mobictl_sensors:main'
         ],
     },
 )
