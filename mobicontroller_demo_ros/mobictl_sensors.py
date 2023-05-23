@@ -24,20 +24,20 @@ class MobiCtlSensors(Node):
         self.min_mon: MINMonitor = MINMonitor(port="/dev/ttyACM0", loglevel=logging.INFO)
         self.get_logger().info("Started MobiCtl")
 
-        self.pub_imu = self.create_publisher(Imu, "mobictl/imu", 10)
-        self.last_imu = Imu()
+        # self.pub_imu = self.create_publisher(Imu, "mobictl/imu", 10)
+        # self.last_imu = Imu()
         
-        self.pub_ultra_1 = self.create_publisher(Range, "mobictl/ultra_1", 10)
-        self.pub_ultra_2 = self.create_publisher(Range, "mobictl/ultra_2", 10)
-        self.pub_ultra_3 = self.create_publisher(Range, "mobictl/ultra_3", 10)
-        self.pub_ultra_4 = self.create_publisher(Range, "mobictl/ultra_4", 10)
-        self.pub_ultra_5 = self.create_publisher(Range, "mobictl/ultra_5", 10)
-        self.pub_ultra_6 = self.create_publisher(Range, "mobictl/ultra_6", 10)
+        # self.pub_ultra_1 = self.create_publisher(Range, "mobictl/ultra_1", 10)
+        # self.pub_ultra_2 = self.create_publisher(Range, "mobictl/ultra_2", 10)
+        # self.pub_ultra_3 = self.create_publisher(Range, "mobictl/ultra_3", 10)
+        # self.pub_ultra_4 = self.create_publisher(Range, "mobictl/ultra_4", 10)
+        # self.pub_ultra_5 = self.create_publisher(Range, "mobictl/ultra_5", 10)
+        # self.pub_ultra_6 = self.create_publisher(Range, "mobictl/ultra_6", 10)
         
         self.pub_brightness = self.create_publisher(Illuminance, "mobictl/brightness", 10)
-        self.pub_temperature = self.create_publisher(Temperature, "mobictl/temperature", 10)
-        self.pub_battery = self.create_publisher(BatteryState, "mobictl/battery", 10)
-        self.pub_user_btn = self.create_publisher(Bool, "mobictl/user_btn", 10)
+        # self.pub_temperature = self.create_publisher(Temperature, "mobictl/temperature", 10)
+        # self.pub_battery = self.create_publisher(BatteryState, "mobictl/battery", 10)
+        # self.pub_user_btn = self.create_publisher(Bool, "mobictl/user_btn", 10)
 
         self.setup()
         self.loop()
@@ -49,29 +49,29 @@ class MobiCtlSensors(Node):
         # Reset all 
         self.min_mon.send_frame(61)
         # IMU
-        pb = PayloadBuilder()
-        pb.append_uint8(0b1010100)
-        pb.append_uint16(5000)
-        self.min_mon.send_frame(32, pb.get_payload())
-        # Ultraschallsensor
-        pb = PayloadBuilder()
-        pb.append_uint8(0x3F)
-        pb.append_uint16(5000)
-        self.min_mon.send_frame(33, pb.get_payload())
+        # pb = PayloadBuilder()
+        # pb.append_uint8(0b1010100)
+        # pb.append_uint16(5000)
+        # self.min_mon.send_frame(32, pb.get_payload())
+        # # Ultraschallsensor
+        # pb = PayloadBuilder()
+        # pb.append_uint8(0x3F)
+        # pb.append_uint16(5000)
+        # self.min_mon.send_frame(33, pb.get_payload())
         # brightness    
         pb = PayloadBuilder()
-        pb.append_uint16(2000)
+        pb.append_uint16(200)
         self.min_mon.send_frame(35, pb.get_payload())
-        # temperature
-        pb = PayloadBuilder()
-        pb.append_uint16(2000)
-        self.min_mon.send_frame(36, pb.get_payload())
-        # battery
-        pb = PayloadBuilder()
-        pb.append_uint16(10000)
-        self.min_mon.send_frame(37, pb.get_payload())
-        # user button
-        self.min_mon.send_frame(38, bytes([1]))
+        # # temperature
+        # pb = PayloadBuilder()
+        # pb.append_uint16(2000)
+        # self.min_mon.send_frame(36, pb.get_payload())
+        # # battery
+        # pb = PayloadBuilder()
+        # pb.append_uint16(10000)
+        # self.min_mon.send_frame(37, pb.get_payload())
+        # # user button
+        # self.min_mon.send_frame(38, bytes([1]))
 
 
     def loop(self):
