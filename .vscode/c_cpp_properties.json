@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/opt/ros/humble/include/**",
+                "/usr/include/**",
+                "src/mobictl_cpp/include/**",
+                "/opt/ros/humble/include/rclcpp",
+                "${workspaceFolder}/src/mobictl_cpp/include",
+                "${workspaceFolder}/src/mobictl_cpp/include",
+                "${workspaceFolder}/src/mobictl_cpp/include"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-arm64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
