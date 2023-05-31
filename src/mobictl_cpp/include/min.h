@@ -59,11 +59,8 @@
 #ifndef MIN_H
 #define MIN_H
 
-extern "C" {
-
 #include <stdbool.h>
 #include <stdint.h>
-#include "inttypes.h"
 
 #ifdef ASSERTION_CHECKING
 #include <assert.h>
@@ -212,5 +209,5 @@ void min_debug_print(const char *msg, ...);
 #else
 #define min_debug_print(...)
 #endif
-}
+
 #endif  // MIN_H

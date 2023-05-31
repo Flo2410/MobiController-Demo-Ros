@@ -27,6 +27,12 @@ void PayloadBuilder::append_uint32(uint32_t number) {
   this->payload.insert(this->payload.end(), buffer, buffer + sizeof(uint32_t));
 }
 
+void PayloadBuilder::append_int16(int16_t number) {
+  uint8_t buffer[sizeof(int16_t)];
+  std::memcpy(buffer, (uint8_t*)&number, sizeof(int16_t));
+  this->payload.insert(this->payload.end(), buffer, buffer + sizeof(int16_t));
+}
+
 void PayloadBuilder::append_float(float number) {
   uint8_t buffer[sizeof(float)];
   std::memcpy(buffer, (uint8_t*)&number, sizeof(float));
@@ -84,6 +90,20 @@ float PayloadBuilder::read_float() {
 }
 
 
+double PayloadBuilder::read_double() {
+  double number;
+  std::memcpy((uint8_t*)&number, this->payload.data(), sizeof(double));
+  this->payload.erase(this->payload.begin(), this->payload.begin() + sizeof(double));
+  return number;
+}
+
+std::string PayloadBuilder::read_string() {
+  std::string str(this->payload.begin(), this->payload.end());
+  this->payload.clear();
+  return str;
+}
+
+
 uint8_t* PayloadBuilder::get_payload() {
   return this->payload.data();
 }
@@ -92,6 +112,10 @@ size_t PayloadBuilder::size() {
   return this->payload.size();
 }
 
-PayloadBuilder::~PayloadBuilder() {
+void PayloadBuilder::clear() {
   this->payload.clear();
+}
+
+PayloadBuilder::~PayloadBuilder() {
+  this->clear();
 }

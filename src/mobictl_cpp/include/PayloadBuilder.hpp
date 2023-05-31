@@ -15,6 +15,7 @@ class PayloadBuilder {
   void append_uint8(uint8_t number);
   void append_uint16(uint16_t number);
   void append_uint32(uint32_t number);
+  void append_int16(int16_t number);
   void append_float(float number);
   void append_double(double number);
   void append_string(std::string str);
@@ -24,9 +25,12 @@ class PayloadBuilder {
   uint16_t read_uint16();
   int16_t read_int16();
   float read_float();
+  double read_double();
+  std::string read_string();
 
   uint8_t* get_payload();
   size_t size();
+  void clear();
 
  private:
   std::vector<uint8_t> payload;

@@ -13,7 +13,9 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 find_package(PkgConfig)
 pkg_check_modules(SERIAL libserial)
@@ -26,7 +28,7 @@ include_directories(include)
 file(GLOB my_sources src/*)
 
 add_executable(mobictl ${my_sources})
-ament_target_dependencies(mobictl rclcpp std_msgs)
+ament_target_dependencies(mobictl rclcpp std_msgs sensor_msgs)
 
 target_include_directories(mobictl PRIVATE ${SERIAL_INCLUDE_DIRS})
 target_link_libraries(mobictl ${SERIAL_LDFLAGS})
