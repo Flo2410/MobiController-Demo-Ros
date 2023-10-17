@@ -1,0 +1,3 @@
+[submodule "src/mobictl_cpp"]
+	path = src/mobictl_cpp
+	url = https://github.com/Flo2410/mobictl_cpp.git
